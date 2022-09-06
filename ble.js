@@ -5,10 +5,8 @@ created 6 Aug 2018
 by Tom Igoe
 */
 var myDevice;
-/// 00006e40-0000-1000-8000-00805f9b34fb
-/// 6e400001-0000-1000-8000-00805f9b34fb
 /// var myService = 0x6e400001; // 0xfebb;        // fill in a service you're looking for here
-var myService = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+var myUartService = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 
 function connect(){
   navigator.bluetooth.requestDevice({
@@ -25,7 +23,7 @@ function connect(){
   })
   .then(function(server) {
     // get the primary service:
-    return server.getPrimaryService(myService);
+    return server.getPrimaryService(myUartService);
   })
   .then(function(service) {
     // get the  characteristic:
@@ -35,8 +33,10 @@ function connect(){
     // subscribe to the characteristic:
     for (c in characteristics) {
       console.log("characteristics[c]", characteristics[c])
-      // characteristics[c].startNotifications()
-      // .then(subscribeToChanges);
+      if (characteristics[c].notify) {
+        characteristics[c].startNotifications()
+        .then(subscribeToChanges);
+      }
     }
   })
   .catch(function(error) {
