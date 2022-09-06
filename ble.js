@@ -5,7 +5,7 @@ created 6 Aug 2018
 by Tom Igoe
 */
 var myDevice;
-var myService = 0xffb0;        // fill in a service you're looking for here
+var myService = 0xfebb;        // fill in a service you're looking for here
 var myCharacteristic = 0xffb2;   // fill in a characteristic from the service here
 
 function connect(){
@@ -23,7 +23,7 @@ function connect(){
   })
   .then(function(server) {
     // get the primary service:
-    return server.getPrimaryService();
+    return server.getPrimaryService(myService);
   })
   .then(function(service) {
     // get the  characteristic:
