@@ -14,8 +14,9 @@
     <button onClick='send_test("-1 r\n")'>-1 r</button>
     <button onClick='send_test("-1 g\n")'>-1 g</button>
     <button onClick='send_test("-1 b\n")'>-1 b</button>
-    <button onClick='send_test("1 r\n")'>-1 r</button>
-    <button onClick='send_test("1 g\n")'>-1 g</button>
-    <button onClick='send_test("1 b\n")'>-1 b</button>
+    <button onClick='send_test("1 r\n")'>1 r</button>
+    <button onClick='send_test("1 g\n")'>1 g</button>
+    <button onClick='send_test("1 b\n")'>1 b</button>
+    <input type="text" col="19" onChange='(e)=>send_test(e.target.value + "\n")'
   </body>
 </html>
