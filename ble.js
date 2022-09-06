@@ -32,10 +32,12 @@ function connect(){
   .then(function(characteristics) {
     // subscribe to the characteristic:
     for (c in characteristics) {
-      console.log("c", c)
-      characteristics[c].startNotifications()
-      .then(subscribeToChanges);
+      console.log("characteristics[c]", characteristics[c])
+      // characteristics[c].startNotifications()
+      // .then(subscribeToChanges);
     }
+    characteristics[0].startNotifications()
+    .then(subscribeToChanges);
   })
   .catch(function(error) {
     // catch any errors:
