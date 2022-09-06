@@ -70,11 +70,16 @@ function disconnect() {
   if (myDevice) {
     // disconnect:
     myDevice.gatt.disconnect();
+    uartRxCharacteristic = null;
+    uartTxCharacteristic = null;
   }
 }
 
-function send_test(data) { 
-  uartTxCharacteristic.writeValueWithoutResponse(new TextEncoder().encode(data))
-  .then((r)=>{console.log(r)})
-  .catch((e)=>{console.error(e)});
+function send_test(data) {
+  if (uartTxCharacteristic) { 
+    return uartTxCharacteristic.writeValueWithoutResponse(new TextEncoder().encode(data))
+    .then((r)=>{console.log(r)})
+    .catch((e)=>{console.error(e)});
+  }
+  console.log("no TX characteristic of the service availible");
 }
