@@ -32,6 +32,7 @@ function connect(){
   .then(function(characteristics) {
     // subscribe to the characteristic:
     for (c in characteristics) {
+      console.log("c", c)
       characteristics[c].startNotifications()
       .then(subscribeToChanges);
     }
