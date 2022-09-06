@@ -75,11 +75,9 @@ function disconnect() {
   }
 }
 
-function send_test(data) {
+async function send_test(data) {
   if (uartTxCharacteristic) { 
-    return uartTxCharacteristic.writeValueWithoutResponse(new TextEncoder().encode(data))
-    .then((r)=>{console.log(r)})
-    .catch((e)=>{console.error(e)});
+    await uartTxCharacteristic.writeValueWithoutResponse(new TextEncoder().encode(data));
   }
   console.log("no TX characteristic of the service availible");
 }
