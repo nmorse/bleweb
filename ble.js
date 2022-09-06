@@ -6,12 +6,14 @@ by Tom Igoe
 */
 var myDevice;
 /// var myService = 0x6e400001; // 0xfebb;        // fill in a service you're looking for here
-var myUartService = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+var uartService = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+var uartRxCharacteristic;
+var uartTxCharacteristic;
 
 function connect(){
   navigator.bluetooth.requestDevice({
     // filters: [myFilters]       // you can't use filters and acceptAllDevices together
-    optionalServices: [myUartService],
+    optionalServices: [uartService],
     acceptAllDevices: true
   })
   .then(function(device) {
@@ -30,12 +32,16 @@ function connect(){
     return service.getCharacteristics();
   })
   .then(function(characteristics) {
-    // subscribe to the characteristic:
+    // subscribe to the characteristic if it has notify?
     for (c in characteristics) {
       console.log("characteristics[c]", characteristics[c])
       if (characteristics[c].notify) {
+        uartRxCharacteristic = characteristics[c];
         characteristics[c].startNotifications()
         .then(subscribeToChanges);
+      }
+      if (characteristics[c].write) {
+        uartTxCharacteristic = characteristics[c];
       }
     }
   })
@@ -63,4 +69,8 @@ function disconnect() {
     // disconnect:
     myDevice.gatt.disconnect();
   }
+}
+
+function send_test(data) { 
+  return uartTxCharacteristic.writeValue(new TextEncoder().encode(data));
 }
