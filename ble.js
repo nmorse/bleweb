@@ -5,7 +5,8 @@ created 6 Aug 2018
 by Tom Igoe
 */
 var myDevice;
-var myService = 0x6e40; // 0xfebb;        // fill in a service you're looking for here
+/// 00006e40-0000-1000-8000-00805f9b34fb
+var myService = 0x6e400001; // 0xfebb;        // fill in a service you're looking for here
 
 function connect(){
   navigator.bluetooth.requestDevice({
