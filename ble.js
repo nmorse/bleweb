@@ -23,7 +23,7 @@ function connect(){
   })
   .then(function(server) {
     // get the primary service:
-    return server.getPrimaryService(myService);
+    return server.getPrimaryService();
   })
   .then(function(service) {
     // get the  characteristic:
