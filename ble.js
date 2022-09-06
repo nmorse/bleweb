@@ -6,7 +6,9 @@ by Tom Igoe
 */
 var myDevice;
 /// 00006e40-0000-1000-8000-00805f9b34fb
-var myService = 0x6e400001; // 0xfebb;        // fill in a service you're looking for here
+/// 6e400001-0000-1000-8000-00805f9b34fb
+/// var myService = 0x6e400001; // 0xfebb;        // fill in a service you're looking for here
+var myService = '6E400001-B5A3-F393-E0A9-E50E24DCCA9E';
 
 function connect(){
   navigator.bluetooth.requestDevice({
