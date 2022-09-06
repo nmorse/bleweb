@@ -11,7 +11,7 @@ var myUartService = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 function connect(){
   navigator.bluetooth.requestDevice({
     // filters: [myFilters]       // you can't use filters and acceptAllDevices together
-    optionalServices: [myService],
+    optionalServices: [myUartService],
     acceptAllDevices: true
   })
   .then(function(device) {
