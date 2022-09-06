@@ -36,11 +36,13 @@ function connect(){
     for (c in characteristics) {
       console.log("characteristics[c]", characteristics[c])
       if (characteristics[c].notify) {
+        console.log("got Rx characteristic")
         uartRxCharacteristic = characteristics[c];
         characteristics[c].startNotifications()
         .then(subscribeToChanges);
       }
       if (characteristics[c].write) {
+        console.log("got Tx characteristic")
         uartTxCharacteristic = characteristics[c];
       }
     }
