@@ -25,7 +25,7 @@ function connect(){
   })
   .then(function(server) {
     // get the primary service:
-    return server.getPrimaryService(myUartService);
+    return server.getPrimaryService(uartService);
   })
   .then(function(service) {
     // get the  characteristic:
