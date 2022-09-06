@@ -77,7 +77,9 @@ function disconnect() {
 
 async function send_test(data) {
   if (uartTxCharacteristic) { 
-    await uartTxCharacteristic.writeValueWithoutResponse(new TextEncoder().encode(data));
-  }
+    var sent = await uartTxCharacteristic.writeValueWithResponse(new TextEncoder().encode(data));
+    console.log(sent);
+    return sent
+  } 
   console.log("no TX characteristic of the service availible");
 }
