@@ -6,7 +6,6 @@ by Tom Igoe
 */
 var myDevice;
 var myService = 0xfebb;        // fill in a service you're looking for here
-var myCharacteristic = 0xffb2;   // fill in a characteristic from the service here
 
 function connect(){
   navigator.bluetooth.requestDevice({
@@ -36,8 +35,6 @@ function connect(){
       // characteristics[c].startNotifications()
       // .then(subscribeToChanges);
     }
-    characteristics[0].startNotifications()
-    .then(subscribeToChanges);
   })
   .catch(function(error) {
     // catch any errors:
