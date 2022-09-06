@@ -72,5 +72,7 @@ function disconnect() {
 }
 
 function send_test(data) { 
-  return uartTxCharacteristic.writeValueWithoutResponse(new TextEncoder().encode(data));
+  uartTxCharacteristic.writeValueWithoutResponse(new TextEncoder().encode(data))
+  .then((r)=>{console.log(r)})
+  .catch((e)=>{console.error(e)});
 }
