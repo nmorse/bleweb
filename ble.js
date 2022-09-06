@@ -35,13 +35,13 @@ function connect(){
     // subscribe to the characteristic if it has notify?
     for (c in characteristics) {
       console.log("characteristics[c]", characteristics[c])
-      if (characteristics[c].notify) {
+      if (characteristics[c].properties.notify) {
         console.log("got Rx characteristic")
         uartRxCharacteristic = characteristics[c];
         characteristics[c].startNotifications()
         .then(subscribeToChanges);
       }
-      if (characteristics[c].write) {
+      if (characteristics[c].properties.write) {
         console.log("got Tx characteristic")
         uartTxCharacteristic = characteristics[c];
       }
