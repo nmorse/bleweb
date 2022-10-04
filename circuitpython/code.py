@@ -26,7 +26,7 @@ pr = parser.parse("[i t] [i 10 / t 5 / + sin] pounce 1 + 127 *")
 pg = parser.parse("[i t] [i 10 / t 5 / - sin] pounce 1 + 127 *")
 pb = parser.parse("[i t] [i 10 / t 5 / + cos] pounce 1 + 127 *")
 next_report_t = 0
-report_inter = 5
+report_inter = 50
 
 def it(i, t):
     global next_report_t, report_inter
@@ -38,7 +38,7 @@ def it(i, t):
         print(i, t, " -> ", red, green, blue)
     return [red, green, blue]
 
-
+newCode = ""
 while True:
     print("WAITING FOR BLE ...")
     # Advertise when not connected.
@@ -52,22 +52,30 @@ while True:
     print("CONNECTED")
 
     # Loop and read packets
-    last_send = time.monotonic()
+    # last_send = time.monotonic()
+    # i t 3 / + sin 2 / 1 - b
     while ble.connected:
         line = uart_server.readline()
         if line:
-            newCode = line[0:-3].decode('utf-8')
-            colorCode = line[-2:-1].decode('utf-8')
-            uart_server.write("[i t] [" + newCode + "] pounce\n")
-            print("[i t] [" + newCode + "] pounce\n")
-            uart_server.write("colorCode = " + colorCode + "\n")
-            print("colorCode = " + colorCode + "\n")
-            if colorCode == "r":
-                pr = parser.parse("[i t] [" + newCode + " 1 + 127 *] pounce")
-            if colorCode == "g":
-                pg = parser.parse("[i t] [" + newCode + " 1 + 127 *] pounce")
-            if colorCode == "b":
-                pb = parser.parse("[i t] [" + newCode + " 1 + 127 *] pounce")
+            print(line[-2:-1].decode('utf-8'))
+            print(line[-2:-1].decode('utf-8') == ",")
+            if line[-2:-1].decode('utf-8') == ",":
+                newCode += line[0:-2].decode('utf-8')
+                print("building newCode : ", newCode)
+            else:
+                newCode += line[0:-3].decode('utf-8')
+                colorCode = line[-2:-1].decode('utf-8')
+                uart_server.write("[i t] [" + newCode + "] pounce\n")
+                print("[i t] [" + newCode + "] pounce\n")
+                uart_server.write("colorCode = " + colorCode + "\n")
+                print("colorCode = " + colorCode + "\n")
+                if colorCode == "r":
+                    pr = parser.parse("[i t] [" + newCode + " 1 + 127 *] pounce")
+                if colorCode == "g":
+                    pg = parser.parse("[i t] [" + newCode + " 1 + 127 *] pounce")
+                if colorCode == "b":
+                    pb = parser.parse("[i t] [" + newCode + " 1 + 127 *] pounce")
+                newCode = ""
         for i in range(0, 20):
             pixels[i] = it(i , time.monotonic())
 
