@@ -11,17 +11,17 @@
     <button onClick='connect()'>connect</button>
     <button onClick='disconnect()'>disconnect</button>
     <br />
-    <button onClick='send_test("-1 r\n")'>-1 r</button>
-    <button onClick='send_test("-1 g\n")'>-1 g</button>
-    <button onClick='send_test("-1 b\n")'>-1 b</button>
-    <button onClick='send_test("1 r\n")'>1 r</button>
-    <button onClick='send_test("1 g\n")'>1 g</button>
-    <button onClick='send_test("1 b\n")'>1 b</button>
+    <button onClick='send_text("-1 r\n")'>-1 r</button>
+    <button onClick='send_text("-1 g\n")'>-1 g</button>
+    <button onClick='send_text("-1 b\n")'>-1 b</button>
+    <button onClick='send_text("1 r\n")'>1 r</button>
+    <button onClick='send_text("1 g\n")'>1 g</button>
+    <button onClick='send_text("1 b\n")'>1 b</button>
     <br />
     <label for="cmd">Cmd (up to 19 characters):</label>
 
     <input type="text" id="cmd" name="cmd" required
            maxlength="19" size="20">
-        <button onClick='send_test(document.getElementById("cmd").value + "\n")'>send</button>
+        <button onClick='send_text(document.getElementById("cmd").value + "\n")'>send</button>
   </body>
 </html>

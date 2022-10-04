@@ -75,11 +75,17 @@ function disconnect() {
   }
 }
 
-async function send_test(data) {
-  if (uartTxCharacteristic) { 
-    var sent = await uartTxCharacteristic.writeValueWithResponse(new TextEncoder().encode(data));
-    console.log(sent);
-    return sent
-  } 
-  console.log("no TX characteristic of the service availible");
+async function send_text(data) {
+  while(data.length > 0) {
+    chunk = data.slice(0, 18);
+    data = data.slice(18);
+    if (uartTxCharacteristic) {
+      special_continue_char = data.length ? ',' : '' 
+      var sent = await uartTxCharacteristic.writeValueWithResponse(new TextEncoder().encode(chunck+special_continue_char));
+      console.log(sent);
+    }
+    else {
+      console.log("no TX characteristic of the service availible");
+    }
+  }
 }
