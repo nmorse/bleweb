@@ -58,7 +58,7 @@ function subscribeToChanges(characteristic) {
   characteristic.oncharacteristicvaluechanged = handleData;
 }
 
-arrayBufferToString(buffer) {
+function arrayBufferToString(buffer) {
   var byteArray = new Uint8Array(buffer);
   var byteString = '';
   for (var i = 0; i < byteArray.byteLength; i++) {
