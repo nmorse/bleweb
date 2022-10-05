@@ -58,11 +58,20 @@ function subscribeToChanges(characteristic) {
   characteristic.oncharacteristicvaluechanged = handleData;
 }
 
+arrayBufferToString(buffer) {
+  var byteArray = new Uint8Array(buffer);
+  var byteString = '';
+  for (var i = 0; i < byteArray.byteLength; i++) {
+    byteString += String.fromCodePoint(byteArray[i]);
+  }
+  return byteString;
+}
+
 // handle incoming data:
 function handleData(event) {
   // get the data buffer from the meter:
-  var buf = new Uint8Array(event.target.value);
-  console.log(buf);
+  var rec = arrayBufferToString(event.target.value.buffer);
+  console.log(rec);
 }
 
 // disconnect function:
