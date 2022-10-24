@@ -95,18 +95,10 @@ def _cos(s, pl):
     a = s.pop()
     s.append(math.cos(a))
     return [s, pl]
-def _n_prod(s, pl):
-    if len(s) >= 2:
-        a = s.pop()
-        b = s.pop()
-        if isNumber(a) and isNumber(b):
-            s.append(a * b)
-            pl.insert(0, 'n*')
-            return [s, pl]
-        else:
-            s.append(b)
-            s.append(a)
-    return [s, pl];
+def _floor(s, pl):
+    a = s.pop()
+    s.append(math.floor(a))
+    return [s, pl]
 def _eq(s, pl):
     a = s.pop()
     b = s.pop()
@@ -194,7 +186,7 @@ words = {
   '/': _divide,
   '%': _modulo,
   'abs': _abs,
-  'n*': _n_prod,
+  'floor': _floor,
   '==': _eq,
   '<': _lt,
   '>': _gt,
