@@ -17,6 +17,8 @@ def deepcopy(l):
 
 def pounceReplace(id, val):
     def r (ele):
+        # TODO sublist 
+        # if isList(ele) 
         if ele == id:
             return val
         return ele
