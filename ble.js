@@ -84,12 +84,13 @@ function disconnect() {
   }
 }
 
-async function send_text(data, domInput) {
+async function send_text(data, colorWord, domInput) {
   if (domInput) {
     let ele = document.getElementById(domInput);
     if (data !== ele.value)
       ele.value = data;
   }
+  data = data + ` ${colorWord}\n`;
   while(data.length > 0) {
     let chunk = data.slice(0, 18);
     data = data.slice(18);
