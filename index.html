@@ -11,22 +11,28 @@
     <button onClick='connect()'>connect</button>
     <button onClick='disconnect()'>disconnect</button>
     <br />
-    <button onClick='send_text("-1 r\n")'>-1 r</button>
-    <button onClick='send_text("-1 g\n")'>-1 g</button>
-    <button onClick='send_text("-1 b\n")'>-1 b</button>
-    <button onClick='send_text("1 r\n")'>1 r</button>
-    <button onClick='send_text("1 g\n")'>1 g</button>
-    <button onClick='send_text("1 b\n")'>1 b</button>
+    <button onClick='send_text("-1 r\n", "cmdr")'>-1 r</button>
+    <button onClick='send_text("-1 g\n", "cmdg")'>-1 g</button>
+    <button onClick='send_text("-1 b\n", "cmdb")'>-1 b</button>
+    <button onClick='send_text("1 r\n", "cmdr")'>1 r</button>
+    <button onClick='send_text("1 g\n", "cmdg")'>1 g</button>
+    <button onClick='send_text("1 b\n", "cmdb")'>1 b</button>
 
-    <button onClick='send_text("i 3.1415 * 10 / t 9 / + sin 2 / 1 - r\n")'>sin r</button>
-    <button onClick='send_text("i 7 + 3.1415 * 10 / t 9 / + sin 2 / 1 - g\n")'>sin g</button>
-    <button onClick='send_text("i 14 + 3.1415 * 10 / t 9 / + sin 2 / 1 - b\n")'>sin b</button>
+    <button onClick='send_text("i 3.1415 * 10 / t 9 / + sin 2 / 1 - r\n", "cmdr")'>sin r</button>
+    <button onClick='send_text("i 7 + 3.1415 * 10 / t 9 / + sin 2 / 1 - g\n", "cmdg")'>sin g</button>
+    <button onClick='send_text("i 14 + 3.1415 * 10 / t 9 / + sin 2 / 1 - b\n", "cmdb")'>sin b</button>
 
     <br />
-    <label for="cmd">Cmd (up to 19 characters):</label>
+    <label for="cmd"></label>
 
-    <input type="text" id="cmd" name="cmd" required
-           size="80">
-        <button onClick='send_text(document.getElementById("cmd").value + "\n")'>send</button>
+    <input type="text" id="cmdr" name="cmdr" required
+           size="50">
+    <button onClick='send_text(document.getElementById("cmdr").value + " r\n")'>red</button>
+    <input type="text" id="cmdg" name="cmdg" required
+           size="50">
+    <button onClick='send_text(document.getElementById("cmdg").value + " g\n")'>green</button>
+    <input type="text" id="cmdb" name="cmdb" required
+           size="50">
+    <button onClick='send_text(document.getElementById("cmdb").value + " b\n")'>blue</button>
   </body>
 </html>

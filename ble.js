@@ -84,7 +84,12 @@ function disconnect() {
   }
 }
 
-async function send_text(data) {
+async function send_text(data, domInput) {
+  if (domInput) {
+    let ele = document.getElementById(domInput);
+    if (data !== ele.value)
+      ele.value = data;
+  }
   while(data.length > 0) {
     let chunk = data.slice(0, 18);
     data = data.slice(18);
